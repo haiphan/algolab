@@ -1,0 +1,29 @@
+{
+  "name": "algolab",
+  "version": "0.0.0",
+  "description": "Solve algo problems",
+  "main": "lib/index.js",
+  "scripts": {
+    "start": "npm run test:live",
+    "test": "tsc -p . && jest",
+    "test:live": "jest --watchAll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/haiphan/algolab.git"
+  },
+  "keywords": [
+    "typescript",
+    "algorithms",
+    "data-structures"
+  ],
+  "author": "Hai Phan",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/jest": "22.2.3",
+    "@types/node": "7.0.12",
+    "jest": "22.4.3",
+    "ts-jest": "22.4.3",
+    "typescript": "2.8.1"
+  }
+}
