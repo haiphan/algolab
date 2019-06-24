@@ -4,6 +4,7 @@
   "description": "Solve algo problems",
   "main": "lib/index.js",
   "scripts": {
+    "lint": "tslint -p tsconfig.json",
     "start": "npm run test:live",
     "test": "tsc -p . && jest",
     "test:live": "jest --watchAll"
@@ -24,6 +25,7 @@
     "@types/node": "7.0.12",
     "jest": "22.4.3",
     "ts-jest": "22.4.3",
+    "tslint": "^5.17.0",
     "typescript": "2.8.1"
   }
 }
