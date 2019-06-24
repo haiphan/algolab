@@ -2,28 +2,35 @@
 // start from beginning and end point
 // if sum smaller, inc start point
 // if sum bigger, dec end point
-const sumTwo = (arr, value) => {
+export const sumTwo = (arr, value) => {
 	let start = 0;
 	let end = arr.length - 1;
+	let sum;
 	while (start < end) {
-		end -= sum > val ? 1 : 0;
-		start += sum < val ? 1 : 0;
-		if (sum === val) {
+		sum = arr[start] + arr[end];
+		if (sum === value) {
 			return true;
 		}
+		end -= sum > value ? 1 : 0;
+		start += sum < value ? 1 : 0;
 	}
 	return false;
 };
 
 // if arrary not sorted
 
-const sumTwoUnsorted = (arr, value) => {
+export const sumTwoUnsorted = (arr, value) => {
 	let searchValues = new Set();
-	arr.forEach(num => {
+	let res = false;
+	arr.forEach((num) => {
+		if (res) {
+			return;
+		}
 		if (searchValues.has(num)) {
-			return true;
+			res = true;
+			return;
 		}
 		searchValues.add(value - num);
 	});
-	return false;
+	return res;
 };
