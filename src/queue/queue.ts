@@ -28,4 +28,9 @@ export class Queue<T> {
   public size(): number {
     return this.nextEnqueueIndex - this.lastDequeuedIndex;
   }
+
+  public isEmpty(): boolean {
+    return this.size() === 0;
+  }
+
 }

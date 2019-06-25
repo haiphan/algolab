@@ -1,9 +1,10 @@
 import { Node } from './node';
+import { Queue } from '../queue/queue';
 
 export class Graph<T> {
   private nodes: Array<Node<T>> = [];
   private edges: string[] = [];
-  private directed: boolean = false;
+  private readonly directed: boolean = false;
   constructor(directed = false) {
     this.directed = directed;
   }
@@ -31,5 +32,26 @@ export class Graph<T> {
         '';
       return `${begin}${padding}`;
     }).join('\n');
+  }
+
+  public bfs(rootKey: T, visitFn) {
+    const root: Node<string> = this.getNode(rootKey) as any;
+    const visitMap = this.nodes.reduce((acc, n) => {
+      const key = n.key as any;
+      return {...acc, [key]: false};
+    }, {});
+    const q: Queue<Node<string>> = new Queue();
+    q.enqueue(root);
+
+    while (!q.isEmpty()) {
+      const cur = q.dequeue();
+      if (!visitMap[cur.key]) {
+        visitFn(cur);
+        visitMap[cur.key] = true;
+      }
+      cur.children.forEach((c) => {
+        !visitMap[c.key] && q.enqueue(c);
+      });
+    }
   }
 }
