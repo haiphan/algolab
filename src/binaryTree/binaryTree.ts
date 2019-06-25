@@ -1,10 +1,37 @@
 import { BinaryNode } from './binaryNode';
+import { Queue } from '../queue/queue';
 
 export enum TraversalType {
   InOrder = 'InOrder',
   PreOrder = 'PreOrder',
   PostOrder = 'PosTOrder',
 }
+
+interface NodeWithHDInterface {
+  node: BinaryNode<any>;
+  hd: number;
+}
+
+interface KeyHDInterface {
+  hd: number;
+  key: any;
+}
+
+const topViewHelper = (root: BinaryNode<any>, height: number, hd: number, hdMap: object) => {
+  if (!root) {
+    return;
+  }
+  if (!hdMap[hd]) {
+    hdMap[hd] = {key: root.key, height};
+  } else {
+    const curHeight = hdMap[hd].height;
+    if (curHeight > height) {
+      hdMap[hd] = {key: root.key, height};
+    }
+  }
+  topViewHelper(root.left, height + 1, hd - 1, hdMap);
+  topViewHelper(root.right, height + 1, hd + 1, hdMap);
+};
 
 const traversalInOrder = (node: BinaryNode<string>, visitFn) => {
   if (node === null) {
@@ -56,4 +83,17 @@ export class BinaryTree<T> {
 
     return res;
   }
+
+  public topView(visitFn) {
+    const {root} = this;
+    const hdMap = {};
+    topViewHelper(root, 0, 0, hdMap);
+    const sortedHd = Object.keys(hdMap).map((i) => Number(i));
+    sortedHd.sort();
+    sortedHd.forEach((hd) => {
+      const {key} = hdMap[hd];
+      visitFn(key);
+    });
+  }
+
 }

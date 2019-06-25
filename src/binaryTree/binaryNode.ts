@@ -1,5 +1,5 @@
 export class BinaryNode<T> {
-  private key: T;
+  public key: T;
   public left: BinaryNode<T> = null;
   public right: BinaryNode<T> = null;
 
