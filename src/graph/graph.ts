@@ -54,4 +54,23 @@ export class Graph<T> {
       });
     }
   }
+
+  public dfs(rootKey, visitFn) {
+    const root: Node<string> = this.getNode(rootKey) as any;
+    const visitMap = this.nodes.reduce((acc, n) => {
+      const key = n.key as any;
+      return {...acc, [key]: false};
+    }, {});
+    function explore(node: Node<string>) {
+      const {key} = node;
+      if (visitMap[key]) {
+        return;
+      }
+      visitFn(node);
+      visitMap[key] = true;
+      node.children.forEach((c) => explore(c));
+    }
+    explore(root);
+  }
+
 }

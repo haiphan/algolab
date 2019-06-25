@@ -47,3 +47,32 @@ test('Graph BFS should work', () => {
     i++;
   });
 });
+
+test('Graph DFS should work', () => {
+  const graph = new Graph(true);
+  const nodes = ['a', 'b', 'c', 'd', 'e', 'f'];
+  const edges = [
+    ['a', 'b'],
+    ['a', 'e'],
+    ['a', 'f'],
+    ['b', 'd'],
+    ['b', 'e'],
+    ['c', 'b'],
+    ['d', 'c'],
+    ['d', 'e']
+  ];
+  nodes.forEach((n) => {
+    graph.addNode(n);
+  });
+
+  edges.forEach(([n1, n2]) => {
+    graph.addEdge(n1, n2);
+  });
+  const expected = ['a', 'b', 'd', 'c', 'e', 'f'];
+  let i = 0;
+  graph.dfs('a', (n) => {
+    console.log('visited', n.key);
+    expect(n.key).toEqual(expected[i]);
+    i++;
+  });
+});
