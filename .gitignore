@@ -4,3 +4,8 @@ npm-debug.log
 *.local
 /lib
 package-lock.json
+# TLS/SSL Keys and Certificates
+*.pem
+*.pfx
+*.crt
+*.key
