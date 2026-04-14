@@ -10,3 +10,20 @@ package-lock.json
 *.crt
 *.key
 .env
+# Build results
+[Dd]ebug/
+[Rr]elease/
+x64/
+x86/
+[Bb]in/
+[Oo]bj/
+# User-specific files (e.g., your personal window layout in VS)
+*.rsuser
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Local configuration overrides
+appsettings.local.json
+
