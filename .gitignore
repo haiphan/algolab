@@ -9,3 +9,4 @@ package-lock.json
 *.pfx
 *.crt
 *.key
+.env
